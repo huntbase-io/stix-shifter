@@ -1,0 +1,11 @@
+{
+    "ocsf": {
+        "substring_fields": ["file.hashes", "process.file.hashes", "observables"],
+        "basename_fields": []
+    },
+    "windows": {
+        "substring_fields": ["Hashes"],
+        "basename_fields": ["Image", "ParentImage", "NewProcessName", "ParentProcessName", "TargetFilename",
+                            "User", "ParentUser"]
+    }
+}

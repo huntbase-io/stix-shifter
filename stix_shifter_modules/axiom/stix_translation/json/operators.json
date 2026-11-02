@@ -1,0 +1,17 @@
+{
+    "ComparisonExpressionOperators.And": "and",
+    "ComparisonExpressionOperators.Or": "or",
+    "ComparisonComparators.Equal": "=~",
+    "ComparisonComparators.NotEqual": "!~",
+    "ComparisonComparators.In": "in~",
+    "ComparisonComparators.Like": "matches regex",
+    "ComparisonComparators.Matches": "matches regex",
+    "ComparisonComparators.GreaterThan": ">",
+    "ComparisonComparators.GreaterThanOrEqual": ">=",
+    "ComparisonComparators.LessThan": "<",
+    "ComparisonComparators.LessThanOrEqual": "<=",
+    "ComparisonComparators.IsSubSet": "ipv4_is_in_range",
+    "ObservationOperators.And": "or",
+    "ObservationOperators.Or": "or",
+    "ObservationOperators.FollowedBy": "or"
+}

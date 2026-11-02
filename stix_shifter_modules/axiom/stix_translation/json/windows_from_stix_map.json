@@ -1,0 +1,75 @@
+{
+    "ipv4-addr": {
+        "fields": {
+            "value": ["SourceIp", "DestinationIp", "IpAddress"]
+        }
+    },
+    "ipv6-addr": {
+        "fields": {
+            "value": ["SourceIp", "DestinationIp", "IpAddress"]
+        }
+    },
+    "domain-name": {
+        "fields": {
+            "value": ["QueryName", "DestinationHostname"]
+        }
+    },
+    "file": {
+        "fields": {
+            "name": ["TargetFilename", "Image", "OriginalFileName"],
+            "hashes.'SHA-256'": ["Hashes"],
+            "hashes.'SHA-1'": ["Hashes"],
+            "hashes.MD5": ["Hashes"],
+            "hashes.SHA256": ["Hashes"],
+            "hashes.SHA1": ["Hashes"]
+        }
+    },
+    "process": {
+        "fields": {
+            "name": ["Image", "NewProcessName"],
+            "pid": ["ProcessId"],
+            "command_line": ["CommandLine"],
+            "x_unique_id": ["ProcessGuid"],
+            "binary_ref.name": ["Image", "NewProcessName"],
+            "parent_ref.name": ["ParentImage", "ParentProcessName"],
+            "parent_ref.pid": ["ParentProcessId"],
+            "parent_ref.command_line": ["ParentCommandLine"],
+            "parent_ref.x_unique_id": ["ParentProcessGuid"],
+            "creator_user_ref.user_id": ["User", "SubjectUserName"],
+            "creator_user_ref.account_login": ["User", "SubjectUserName"]
+        }
+    },
+    "network-traffic": {
+        "fields": {
+            "src_ref.value": ["SourceIp", "IpAddress"],
+            "dst_ref.value": ["DestinationIp"],
+            "src_port": ["SourcePort", "IpPort"],
+            "dst_port": ["DestinationPort"],
+            "protocols[*]": ["Protocol"]
+        }
+    },
+    "user-account": {
+        "fields": {
+            "user_id": ["User", "TargetUserName", "SubjectUserName"],
+            "account_login": ["User", "TargetUserName", "SubjectUserName"],
+            "x_target_sid": ["TargetUserSid"]
+        }
+    },
+    "windows-registry-key": {
+        "fields": {
+            "key": ["TargetObject"]
+        }
+    },
+    "x-oca-asset": {
+        "fields": {
+            "hostname": ["Hostname", "WorkstationName"]
+        }
+    },
+    "x-oca-event": {
+        "fields": {
+            "code": ["EventID"],
+            "action": ["EventType"],
+            "host_ref.hostname": ["Hostname"]
+        }
+    }
+}
