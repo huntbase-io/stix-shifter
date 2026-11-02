@@ -1,0 +1,108 @@
+{
+    "ipv4-addr": {
+        "fields": {
+            "value": ["src_endpoint.ip", "dst_endpoint.ip", "device.ip"]
+        }
+    },
+    "ipv6-addr": {
+        "fields": {
+            "value": ["src_endpoint.ip", "dst_endpoint.ip", "device.ip"]
+        }
+    },
+    "mac-addr": {
+        "fields": {
+            "value": ["src_endpoint.mac", "dst_endpoint.mac", "device.mac"]
+        }
+    },
+    "domain-name": {
+        "fields": {
+            "value": ["query.hostname", "dst_endpoint.hostname", "dst_endpoint.domain", "http_request.url.hostname"]
+        }
+    },
+    "url": {
+        "fields": {
+            "value": ["http_request.url.url_string", "url.url_string"]
+        }
+    },
+    "email-addr": {
+        "fields": {
+            "value": ["user.email_addr", "actor.user.email_addr", "email.from"]
+        }
+    },
+    "file": {
+        "fields": {
+            "name": ["file.name", "process.file.name"],
+            "hashes.'SHA-256'": ["file.hashes", "process.file.hashes"],
+            "hashes.'SHA-1'": ["file.hashes", "process.file.hashes"],
+            "hashes.MD5": ["file.hashes", "process.file.hashes"],
+            "hashes.SHA256": ["file.hashes", "process.file.hashes"],
+            "hashes.SHA1": ["file.hashes", "process.file.hashes"],
+            "size": ["file.size"],
+            "parent_directory_ref.path": ["file.parent_folder"],
+            "created": ["file.created_time"],
+            "modified": ["file.modified_time"]
+        }
+    },
+    "directory": {
+        "fields": {
+            "path": ["file.parent_folder", "process.file.parent_folder"]
+        }
+    },
+    "process": {
+        "fields": {
+            "name": ["process.name"],
+            "pid": ["process.pid"],
+            "command_line": ["process.cmd_line"],
+            "created": ["process.created_time"],
+            "x_unique_id": ["process.uid"],
+            "binary_ref.name": ["process.file.name"],
+            "binary_ref.parent_directory_ref.path": ["process.file.parent_folder"],
+            "parent_ref.name": ["process.parent_process.name"],
+            "parent_ref.pid": ["process.parent_process.pid"],
+            "parent_ref.command_line": ["process.parent_process.cmd_line"],
+            "creator_user_ref.user_id": ["process.user.name", "actor.user.name"],
+            "creator_user_ref.account_login": ["process.user.name", "actor.user.name"]
+        }
+    },
+    "network-traffic": {
+        "fields": {
+            "src_ref.value": ["src_endpoint.ip"],
+            "dst_ref.value": ["dst_endpoint.ip"],
+            "src_port": ["src_endpoint.port"],
+            "dst_port": ["dst_endpoint.port"],
+            "protocols[*]": ["connection_info.protocol_name"],
+            "src_byte_count": ["traffic.bytes_out"],
+            "dst_byte_count": ["traffic.bytes_in"],
+            "src_packets": ["traffic.packets_out"],
+            "dst_packets": ["traffic.packets_in"]
+        }
+    },
+    "user-account": {
+        "fields": {
+            "user_id": ["user.name", "user.uid", "actor.user.name", "actor.user.uid"],
+            "account_login": ["user.name", "actor.user.name"],
+            "display_name": ["user.full_name", "actor.user.full_name"]
+        }
+    },
+    "windows-registry-key": {
+        "fields": {
+            "key": ["reg_key.path", "reg_value.path"]
+        }
+    },
+    "x-oca-asset": {
+        "fields": {
+            "hostname": ["device.hostname", "device.name"],
+            "ip_refs[*].value": ["device.ip"]
+        }
+    },
+    "x-oca-event": {
+        "fields": {
+            "action": ["activity_name"],
+            "code": ["class_uid"],
+            "category": ["category_name"],
+            "module": ["class_name"],
+            "outcome": ["status"],
+            "host_ref.hostname": ["device.hostname"]
+        }
+    }
+}

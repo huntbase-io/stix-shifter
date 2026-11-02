@@ -1,0 +1,50 @@
+{
+    "connection": {
+        "type": {
+            "displayName": "Axiom",
+            "group": "axiom"
+        },
+        "host": {
+            "type": "text",
+            "regex": "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9_:/\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9_:/\\-]*[A-Za-z0-9])$",
+            "default": "api.axiom.co"
+        },
+        "port": {
+            "type": "number",
+            "default": 443,
+            "min": 1,
+            "max": 65535
+        },
+        "org_id": {
+            "type": "text",
+            "optional": true
+        },
+        "help": {
+            "type": "link",
+            "default": "data-sources.html"
+        },
+        "options": {
+            "dataset": {
+                "type": "text",
+                "default": "ocsf"
+            },
+            "field_schema": {
+                "type": "text",
+                "default": "ocsf",
+                "optional": true
+            },
+            "field_map": {
+                "type": "text",
+                "optional": true
+            }
+        }
+    },
+    "configuration": {
+        "auth": {
+            "type": "fields",
+            "api_key": {
+                "type": "password"
+            }
+        }
+    }
+}

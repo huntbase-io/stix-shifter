@@ -1,0 +1,42 @@
+{
+    "connection": {
+        "host": {
+            "label": "Management IP address or hostname",
+            "description": "Specify the IP address or hostname of the data source"
+        },
+        "port": {
+            "label": "Host port",
+            "description": "Set the port number that is associated with the hostname or IP address"
+        },
+        "org_id": {
+            "label": "Organisation ID",
+            "description": "Axiom organisation ID. Only needed with a personal access token."
+        },
+        "help": {
+            "label": "Need additional help?",
+            "description": "More details on the data source setting can be found in the specified link"
+        },
+        "options": {
+            "dataset": {
+                "label": "Dataset",
+                "description": "Axiom dataset to search, for example ocsf"
+            },
+            "field_schema": {
+                "label": "Field layout",
+                "description": "How the dataset's fields are named: ocsf (Axiom OCSF schema), windows (Windows Security and Sysmon fields), a comma-separated list, or all"
+            },
+            "field_map": {
+                "label": "Extra field mapping",
+                "description": "JSON object that adds dataset fields to STIX properties, for example {\"ipv4-addr\": {\"fields\": {\"value\": [\"client_ip\"]}}}"
+            }
+        }
+    },
+    "configuration": {
+        "auth": {
+            "api_key": {
+                "label": "API token",
+                "description": "Axiom API token with query permission on the dataset"
+            }
+        }
+    }
+}

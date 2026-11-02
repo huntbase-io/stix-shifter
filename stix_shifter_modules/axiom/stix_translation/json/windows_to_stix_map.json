@@ -1,0 +1,247 @@
+{
+    "_time": [
+        {
+            "key": "first_observed",
+            "cybox": false
+        },
+        {
+            "key": "last_observed",
+            "cybox": false
+        }
+    ],
+    "EventID": {
+        "key": "x-oca-event.code",
+        "object": "event",
+        "transformer": "ToInteger"
+    },
+    "Channel": {
+        "key": "x-oca-event.module",
+        "object": "event"
+    },
+    "Hostname": [
+        {
+            "key": "x-oca-asset.hostname",
+            "object": "host"
+        },
+        {
+            "key": "x-oca-event.host_ref",
+            "object": "event",
+            "references": "host"
+        }
+    ],
+    "SourceIp": [
+        {
+            "key": "ipv4-addr.value",
+            "object": "src_ip"
+        },
+        {
+            "key": "network-traffic.src_ref",
+            "object": "nt",
+            "references": "src_ip"
+        }
+    ],
+    "SourcePort": {
+        "key": "network-traffic.src_port",
+        "object": "nt",
+        "transformer": "ToInteger"
+    },
+    "DestinationIp": [
+        {
+            "key": "ipv4-addr.value",
+            "object": "dst_ip"
+        },
+        {
+            "key": "network-traffic.dst_ref",
+            "object": "nt",
+            "references": "dst_ip"
+        },
+        {
+            "key": "x-oca-event.network_ref",
+            "object": "event",
+            "references": "nt"
+        }
+    ],
+    "DestinationPort": {
+        "key": "network-traffic.dst_port",
+        "object": "nt",
+        "transformer": "ToInteger"
+    },
+    "Protocol": {
+        "key": "network-traffic.protocols",
+        "object": "nt",
+        "transformer": "ToLowercaseArray"
+    },
+    "DestinationHostname": {
+        "key": "domain-name.value",
+        "object": "dst_domain"
+    },
+    "QueryName": [
+        {
+            "key": "domain-name.value",
+            "object": "query_domain"
+        },
+        {
+            "key": "x-oca-event.domain_ref",
+            "object": "event",
+            "references": "query_domain"
+        }
+    ],
+    "IpAddress": {
+        "key": "ipv4-addr.value",
+        "object": "logon_ip"
+    },
+    "Image": [
+        {
+            "key": "file.name",
+            "object": "proc_file",
+            "transformer": "ToFileName"
+        },
+        {
+            "key": "directory.path",
+            "object": "proc_dir",
+            "transformer": "ToDirectoryPath"
+        },
+        {
+            "key": "file.parent_directory_ref",
+            "object": "proc_file",
+            "references": "proc_dir"
+        },
+        {
+            "key": "process.name",
+            "object": "proc",
+            "transformer": "ToFileName"
+        },
+        {
+            "key": "process.binary_ref",
+            "object": "proc",
+            "references": "proc_file"
+        },
+        {
+            "key": "x-oca-event.process_ref",
+            "object": "event",
+            "references": "proc"
+        }
+    ],
+    "NewProcessName": [
+        {
+            "key": "file.name",
+            "object": "proc_file",
+            "transformer": "ToFileName"
+        },
+        {
+            "key": "process.name",
+            "object": "proc",
+            "transformer": "ToFileName"
+        },
+        {
+            "key": "process.binary_ref",
+            "object": "proc",
+            "references": "proc_file"
+        }
+    ],
+    "CommandLine": {
+        "key": "process.command_line",
+        "object": "proc"
+    },
+    "ProcessId": {
+        "key": "process.pid",
+        "object": "proc",
+        "transformer": "ToInteger"
+    },
+    "ProcessGuid": {
+        "key": "process.x_unique_id",
+        "object": "proc"
+    },
+    "ParentImage": [
+        {
+            "key": "process.name",
+            "object": "parent_proc",
+            "transformer": "ToFileName"
+        },
+        {
+            "key": "process.parent_ref",
+            "object": "proc",
+            "references": "parent_proc"
+        }
+    ],
+    "ParentCommandLine": {
+        "key": "process.command_line",
+        "object": "parent_proc"
+    },
+    "ParentProcessId": {
+        "key": "process.pid",
+        "object": "parent_proc",
+        "transformer": "ToInteger"
+    },
+    "ParentProcessGuid": {
+        "key": "process.x_unique_id",
+        "object": "parent_proc"
+    },
+    "User": [
+        {
+            "key": "user-account.user_id",
+            "object": "user",
+            "transformer": "BackslashUser"
+        },
+        {
+            "key": "process.creator_user_ref",
+            "object": "proc",
+            "references": "user"
+        },
+        {
+            "key": "x-oca-event.user_ref",
+            "object": "event",
+            "references": "user"
+        }
+    ],
+    "TargetUserName": [
+        {
+            "key": "user-account.user_id",
+            "object": "target_user"
+        },
+        {
+            "key": "x-oca-event.user_ref",
+            "object": "event",
+            "references": "target_user"
+        }
+    ],
+    "SubjectUserName": {
+        "key": "user-account.user_id",
+        "object": "subject_user"
+    },
+    "TargetFilename": [
+        {
+            "key": "file.name",
+            "object": "target_file",
+            "transformer": "ToFileName"
+        },
+        {
+            "key": "directory.path",
+            "object": "target_dir",
+            "transformer": "ToDirectoryPath"
+        },
+        {
+            "key": "file.parent_directory_ref",
+            "object": "target_file",
+            "references": "target_dir"
+        }
+    ],
+    "TargetObject": {
+        "key": "windows-registry-key.key",
+        "object": "registry"
+    },
+    "HashesByAlgorithm": {
+        "MD5": {
+            "key": "file.hashes.MD5",
+            "object": "proc_file"
+        },
+        "SHA-1": {
+            "key": "file.hashes.SHA-1",
+            "object": "proc_file"
+        },
+        "SHA-256": {
+            "key": "file.hashes.SHA-256",
+            "object": "proc_file"
+        }
+    }
+}
