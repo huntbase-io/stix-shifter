@@ -2,7 +2,9 @@
 # GitHub release assets for hb-backend to install. Not for upstream.
 #
 # Release by pushing a tag `hb-<module>-<version>`, e.g. `hb-splunk-8.1.2.post1`,
-# or run the workflow manually. Use a PEP 440 post-release of the upstream
+# on a commit already merged to `huntbase` (by PR), or run the workflow
+# manually from `huntbase`. Commits not on `huntbase` are refused, and
+# `hb-*` tags can't be moved or deleted (repo ruleset). Use a PEP 440 post-release of the upstream
 # version hb-backend pins so the patched wheel sorts above the stock one.
 name: Huntbase release
 
@@ -28,6 +30,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Only release reviewed code: the tagged (or dispatched) commit must
+      # already be on the protected `huntbase` branch.
+      - name: Check the commit is merged to huntbase
+        run: |
+          git fetch --no-tags origin huntbase
+          if ! git merge-base --is-ancestor "$GITHUB_SHA" origin/huntbase; then
+            echo "::error::${GITHUB_SHA} is not on huntbase. Merge the change by PR first, then tag the merge commit."
+            exit 1
+          fi
 
       - uses: actions/setup-python@v5
         with:
@@ -63,8 +77,10 @@ jobs:
           pip install --upgrade pip setuptools wheel
           pip install -r requirements-dev.txt
 
-      - name: Test module
-        run: pytest -q "stix_shifter_modules/${{ steps.meta.outputs.module }}/tests"
+      # Full suite, not just the module: shared tests (e.g. common labels)
+      # catch changes that break other connectors.
+      - name: Test
+        run: pytest -q
 
       - name: Build wheel
         env:
